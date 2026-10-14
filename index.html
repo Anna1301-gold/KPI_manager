@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Система KPI управляющего за работу в CRM — МЕТРИКА ДЕВЕЛОПМЕНТ</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;font-family:'Segoe UI',Arial,sans-serif;background:#1e293b;overflow:hidden}
+.deck{position:relative;width:100vw;height:100vh;display:flex;align-items:center;justify-content:center}
+.slide{width:1280px;height:720px;background:#fff;border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,.35);padding:45px 60px 40px;display:none;flex-direction:column;position:relative;overflow:hidden;transform-origin:center}
+.slide.active{display:flex}
+@media(max-width:1360px),(max-height:780px){.slide{transform:scale(.85)}}
+@media(max-width:1100px),(max-height:660px){.slide{transform:scale(.7)}}
+@media(max-width:900px),(max-height:540px){.slide{transform:scale(.55)}}
+.slide::before{content:'';position:absolute;top:0;left:0;width:100%;height:6px;background:linear-gradient(90deg,#1e3a8a,#f59e0b)}
+h1{font-size:26px;color:#0f172a;letter-spacing:.5px;line-height:1.25}
+.sub{font-size:16px;color:#64748b;margin-top:6px;font-style:italic}
+.divider{height:2px;background:#e2e8f0;margin:18px 0 22px}
+.cols{display:flex;gap:40px;flex:1}
+.col{flex:1}
+.col h2{font-size:15px;text-transform:uppercase;letter-spacing:1.5px;color:#94a3b8;margin-bottom:16px}
+.col ul{list-style:none}
+.col ul li{font-size:17px;color:#1e293b;padding:12px 0 12px 28px;position:relative;line-height:1.5;border-bottom:1px solid #f1f5f9}
+.col ul li::before{content:'●';position:absolute;left:0;color:#f59e0b;font-size:14px;top:15px}
+.note{display:block;font-size:14px;color:#64748b;font-style:italic;margin-top:4px}
+.formula{background:#0f172a;color:#fff;padding:24px;border-radius:12px;text-align:center;font-size:22px;font-weight:600;letter-spacing:.5px;margin-bottom:18px;box-shadow:0 8px 24px rgba(15,23,42,.25)}
+.formula span{color:#f59e0b}
+.rule-list li{font-size:16px}
+.rule-list li::before{content:'→';color:#1e3a8a}
+.footer{margin-top:24px;text-align:center;font-size:14px;color:#94a3b8;font-style:italic}
+table{width:100%;border-collapse:separate;border-spacing:0;font-size:15px;flex:1}
+thead th{background:#0f172a;color:#fff;padding:12px 8px;text-align:center;font-weight:600;font-size:13px;text-transform:uppercase;letter-spacing:.5px}
+thead th:first-child{border-radius:8px 0 0 0}
+thead th:last-child{border-radius:0 8px 0 0}
+tbody td{padding:11px 8px;text-align:center;border-bottom:1px solid #e2e8f0;color:#1e293b}
+tbody tr:nth-child(even){background:#f8fafc}
+.freeze{color:#d32f2f;font-weight:700}
+.payout{color:#2e7d32;font-weight:700}
+.num{font-variant-numeric:tabular-nums}
+.conclusion{margin-top:20px;background:#fff7ed;border-left:4px solid #f59e0b;padding:16px 20px;border-radius:8px;font-size:16px;color:#0f172a;text-align:center}
+.conclusion b{color:#b45309}
+.nav{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:16px;background:rgba(15,23,42,.85);padding:10px 20px;border-radius:40px;backdrop-filter:blur(8px);z-index:100}
+.nav button{background:transparent;border:none;color:#fff;font-size:20px;cursor:pointer;padding:6px 12px;border-radius:20px;transition:background .15s}
+.nav button:hover:not(:disabled){background:rgba(255,255,255,.15)}
+.nav button:disabled{opacity:.3;cursor:default}
+.nav .counter{color:#fff;font-size:14px;font-weight:600;min-width:60px;text-align:center;font-variant-numeric:tabular-nums}
+.progress{position:fixed;top:0;left:0;height:4px;background:linear-gradient(90deg,#1e3a8a,#f59e0b);transition:width .25s ease;z-index:100}
+</style>
+</head><body>
+
+<div class="progress" id="progress"></div>
+
+<div class="deck">
+
+  <!-- СЛАЙД 1 -->
+  <div class="slide active">
+    <h1>СИСТЕМА KPI УПРАВЛЯЮЩЕГО ЗА РАБОТУ В CRM СИСТЕМЕ</h1>
+    <div class="sub">МЕТРИКА ДЕВЕЛОПМЕНТ · От принятого лида до результата сделки</div>
+    <div class="divider"></div>
+
+    <div class="cols">
+      <div class="col">
+        <h2>Структура дохода</h2>
+        <ul>
+          <li>Фиксированная часть — <b>ФИКС</b><span class="note">Индивидуально</span></li>
+          <li>KPI-бонус за ведение CRM — <b>до 30 000 ₽</b><span class="note">6 показателей работы в Bitrix24</span></li>
+        </ul>
+      </div>
+
+      <div class="col">
+        <h2>Ключевой принцип</h2>
+        <div class="formula">KPI-бонус = <span>30 000 ₽</span> × KPI</div>
+        <ul class="rule-list">
+          <li>Если KPI &gt; 0 — штраф уменьшает бонус <b>не более чем на 50%</b></li>
+          <li>Если KPI = 0 — KPI-бонус = <b>0 ₽</b></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer">
+      Доход = ФИКС + до 30 000 ₽ (KPI за ведение CRM)
+    </div>
+  </div>
+
+  <!-- СЛАЙД 2 -->
+  <div class="slide">
+    <h1>КАРТА KPI: 6 ПОКАЗАТЕЛЕЙ РАБОТЫ В BITRIX24</h1>
+    <div class="sub">KPI = Σ (Факт / Цель × Вес) · Лимит штрафа –50%</div>
+    <div class="divider"></div>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width:5%">№</th>
+          <th style="width:36%">KPI</th>
+          <th style="width:13%">Цель</th>
+          <th style="width:10%">Вес</th>
+          <th style="width:36%">Штраф</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td style="text-align:left;padding-left:16px">
+            <b>Чекин: график работы</b>
+            <span style="display:block;font-size:12px;color:#64748b;font-style:italic;margin-top:2px">день не открыт / день не закрыт / пропущен рабочий день</span>
+          </td>
+          <td class="num">100%</td>
+          <td class="num"><b>15%</b></td>
+          <td style="text-align:left;padding-left:10px;font-size:12px">
+            –5% за день без Чекина<br>
+            <span style="color:#d32f2f;font-weight:700">–50% за пропущенный день</span>
+          </td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td style="text-align:left;padding-left:16px"><b>Комментарий за ≤10 мин</b><span style="display:block;font-size:12px;color:#64748b;font-style:italic">5 строк: пришёл за · рассматривает · бюджет · итог · следующий шаг</span></td>
+          <td class="num">≥ 90%</td>
+          <td class="num"><b>20%</b></td>
+          <td style="text-align:left;padding-left:10px;font-size:12px">–10% за диалог</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td style="text-align:left;padding-left:16px"><b>Заполнение всех полей слева</b></td>
+          <td class="num">100%</td>
+          <td class="num"><b>20%</b></td>
+          <td style="text-align:left;padding-left:10px;font-size:12px">–5% за клиента</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td style="text-align:left;padding-left:16px"><b>Следующая задача</b><span style="display:block;font-size:12px;color:#64748b;font-style:italic">действие + исполнитель + срок</span></td>
+          <td class="num">100%</td>
+          <td class="num"><b>20%</b></td>
+          <td style="text-align:left;padding-left:10px;font-size:12px">–5% за сделку</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td style="text-align:left;padding-left:16px"><b>Соответствие стадии факту</b></td>
+          <td class="num">100%</td>
+          <td class="num"><b>15%</b></td>
+          <td style="text-align:left;padding-left:10px;font-size:12px">–15% за нарушение</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td style="text-align:left;padding-left:16px"><b>Нет просроченных задач</b></td>
+          <td class="num">≤ 5%</td>
+          <td class="num"><b>10%</b></td>
+          <td style="text-align:left;padding-left:10px;font-size:12px">–5% за просрочку</td>
+        </tr>
+        <tr style="background:#0f172a;color:#fff">
+          <td colspan="3" style="text-align:right;padding-right:16px;color:#fff;font-weight:700">ИТОГО</td>
+          <td class="num" style="color:#f59e0b;font-weight:700">100%</td>
+          <td style="color:#cbd5e1;font-size:12px;text-align:left;padding-left:10px">Лимит штрафа: –50%</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="conclusion">
+      KPI-бонус = <b>30 000 ₽ × KPI × (1 – Σ Штрафы)</b> · Если KPI &gt; 0, штраф уменьшает бонус <b>не более чем на 50%</b> · Если KPI = 0 — бонус = 0 ₽
+    </div>
+
+    <div class="footer">
+      Считается автоматически по истории Bitrix24 и телефонии
+    </div>
+  </div>
+
+  <!-- СЛАЙД 3 -->
+  <div class="slide">
+    <h1>ПРИМЕР РАСЧЁТА KPI-БОНУСА СО ШТРАФАМИ</h1>
+    <div class="sub">Формула: KPI = Σ (Факт / Цель × Вес) · Бонус = 30 000 ₽ × KPI × (1 – min(Σ Штрафы; 50%))</div>
+    <div class="divider"></div>
+
+    <div style="display:flex;gap:24px;flex:1;min-height:0">
+      <div style="flex:1.15;display:flex;flex-direction:column">
+        <h2 style="font-size:13px;text-transform:uppercase;letter-spacing:1.5px;color:#94a3b8;margin-bottom:10px">Расчёт KPI</h2>
+        <table style="font-size:13px">
+          <thead>
+            <tr><th style="width:6%">№</th><th style="width:30%">KPI</th><th style="width:12%">Цель</th><th style="width:12%">Факт</th><th style="width:12%">Ф/Ц</th><th style="width:10%">Вес</th><th style="width:18%">Вклад</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td style="text-align:left;padding-left:10px">Чекин</td><td class="num">100%</td><td class="num">95%</td><td class="num">0,95</td><td class="num">15%</td><td class="num payout">14,25%</td></tr>
+            <tr><td>2</td><td style="text-align:left;padding-left:10px">Комментарий</td><td class="num">90%</td><td class="num">92%</td><td class="num">1,00</td><td class="num">20%</td><td class="num payout">20,0%</td></tr>
+            <tr><td>3</td><td style="text-align:left;padding-left:10px">Заполнение полей</td><td class="num">100%</td><td class="num">96%</td><td class="num">0,96</td><td class="num">20%</td><td class="num payout">19,2%</td></tr>
+            <tr><td>4</td><td style="text-align:left;padding-left:10px">Следующая задача</td><td class="num">100%</td><td class="num">98%</td><td class="num">0,98</td><td class="num">20%</td><td class="num payout">19,6%</td></tr>
+            <tr><td>5</td><td style="text-align:left;padding-left:10px">Стадия = факт</td><td class="num">100%</td><td class="num">97%</td><td class="num">0,97</td><td class="num">15%</td><td class="num payout">14,55%</td></tr>
+            <tr><td>6</td><td style="text-align:left;padding-left:10px">Просрочки</td><td class="num">≤5%</td><td class="num">4%</td><td class="num">1,00</td><td class="num">10%</td><td class="num payout">10,0%</td></tr>
+            <tr style="background:#0f172a;color:#fff"><td colspan="5" style="text-align:right;padding-right:10px;color:#fff;font-weight:700;font-size:13px">ИТОГОВЫЙ KPI</td><td class="num" style="color:#fff">100%</td><td class="num" style="color:#f59e0b;font-weight:700">97,6%</td></tr>
+          </tbody>
+        </table>
+        <div class="conclusion" style="margin-top:14px;padding:12px 16px;font-size:14px">Итоговый KPI <b>97,6%</b> — выше цели ≥ 90% ✅</div>
+      </div>
+
+      <div style="flex:1;display:flex;flex-direction:column">
+        <h2 style="font-size:13px;text-transform:uppercase;letter-spacing:1.5px;color:#94a3b8;margin-bottom:10px">Расчёт штрафов</h2>
+        <table style="font-size:13px">
+          <thead>
+            <tr><th style="width:6%">№</th><th style="width:24%">KPI</th><th style="width:30%">Нарушение</th><th style="width:11%">Кол-во</th><th style="width:12%">Штраф</th><th style="width:17%">Итого</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td style="text-align:left;padding-left:10px">Чекин</td><td style="text-align:left;padding-left:10px">День не закрыт</td><td class="num">2</td><td class="num">–5%</td><td class="num freeze">–10%</td></tr>
+            <tr><td>2</td><td style="text-align:left;padding-left:10px">Комментарий</td><td style="text-align:left;padding-left:10px">Неполные 5 строк</td><td class="num">2</td><td class="num">–10%</td><td class="num freeze">–20%</td></tr>
+            <tr><td>3</td><td style="text-align:left;padding-left:10px">Заполнение полей</td><td style="text-align:left;padding-left:10px">Клиент с пустыми полями</td><td class="num">2</td><td class="num">–5%</td><td class="num freeze">–10%</td></tr>
+            <tr style="background:#fef2f2"><td colspan="5" style="text-align:right;padding-right:10px;font-weight:700;color:#991b1b">Σ ШТРАФОВ</td><td class="num freeze" style="font-size:15px">–40%</td></tr>
+            <tr style="background:#fff7ed"><td colspan="5" style="text-align:right;padding-right:10px;font-weight:700;color:#9a3412">ПРИМЕНЕНО</td><td class="num" style="color:#c2410c;font-weight:700">–40%</td></tr>
+          </tbody>
+        </table>
+        <div class="conclusion" style="margin-top:14px;padding:12px 16px;font-size:14px;background:#fef2f2;border-left-color:#d32f2f">Штраф <b>–40%</b> — в пределах лимита –50%</div>
+      </div>
+    </div>
+
+    <div style="margin-top:18px;background:#0f172a;color:#fff;padding:18px 24px;border-radius:12px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 8px 24px rgba(15,23,42,.25)">
+      <div style="font-size:14px;color:#cbd5e1;letter-spacing:.5px">KPI-БОНУС = 30 000 ₽ × 97,6% × (1 – 40%)</div>
+      <div style="font-size:24px;font-weight:700;color:#f59e0b;font-variant-numeric:tabular-nums">17 568 ₽</div>
+    </div>
+
+    <div class="footer">KPI считается по истории Bitrix24 · Если KPI &gt; 0 — штраф не более 50% · Если KPI = 0 — бонус = 0 ₽</div>
+  </div>
+
+  <!-- СЛАЙД 4 -->
+  <div class="slide">
+    <h1>ИТОГОВЫЙ ДОХОД ЗА МЕСЯЦ</h1>
+    <div class="sub">ФИКС + KPI-бонус за ведение CRM</div>
+    <div class="divider"></div>
+
+    <table>
+      <thead>
+        <tr><th style="width:40%">Компонент</th><th style="width:35%">Расчёт</th><th style="width:25%">Сумма</th></tr>
+      </thead>
+      <tbody>
+        <tr><td style="text-align:left;padding-left:16px"><b>ФИКС</b></td><td>—</td><td class="num payout">—</td></tr>
+        <tr><td style="text-align:left;padding-left:16px">KPI-бонус за CRM</td><td class="num">30 000 × 0,976 × 0,6</td><td class="num payout">17 568 ₽</td></tr>
+        <tr style="background:#0f172a;color:#fff"><td colspan="2" style="text-align:right;padding-right:16px;color:#fff;font-weight:700;font-size:18px">ИТОГО (без ФИКС)</td><td class="num" style="color:#f59e0b;font-weight:700;font-size:20px">17 568 ₽</td></tr>
+      </tbody>
+    </table>
+
+    <div class="conclusion">
+      <b>Ключевые правила:</b> KPI считается по 6 показателям Bitrix24 · если KPI &gt; 0, штраф уменьшает бонус не более чем на 50% · если KPI = 0 — бонус = 0 ₽
+    </div>
+
+    <div class="footer">Все суммы в рублях · Расчёт автоматический в Bitrix24</div>
+  </div>
+
+</div>
+
+<div class="nav">
+  <button id="prev" onclick="go(-1)">‹</button>
+  <span class="counter" id="counter">1 / 4</span>
+  <button id="next" onclick="go(1)">›</button>
+</div>
+
+<script>
+let current = 0;
+const slides = document.querySelectorAll('.slide');
+const counter = document.getElementById('counter');
+const progress = document.getElementById('progress');
+const total = slides.length;
+
+function show(i) {
+  slides.forEach(s => s.classList.remove('active'));
+  slides[i].classList.add('active');
+  current = i;
+  counter.textContent = (i + 1) + ' / ' + total;
+  progress.style.width = ((i + 1) / total * 100) + '%';
+  document.getElementById('prev').disabled = i === 0;
+  document.getElementById('next').disabled = i === total - 1;
+}
+function go(dir) {
+  const next = current + dir;
+  if (next >= 0 && next < total) show(next);
+}
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); go(1); }
+  if (e.key === 'ArrowLeft'  || e.key === 'PageUp')                    { e.preventDefault(); go(-1); }
+  if (e.key === 'Home') show(0);
+  if (e.key === 'End')  show(total - 1);
+});
+let touchStartX = 0;
+document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; });
+document.addEventListener('touchend', e => {
+  const dx = e.changedTouches[0].clientX - touchStartX;
+  if (Math.abs(dx) > 50) go(dx < 0 ? 1 : -1);
+});
+show(0);
+</script>
+
+</body>
+</html>
