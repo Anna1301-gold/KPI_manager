@@ -2,49 +2,79 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<title>Система KPI управляющего за работу в CRM — МЕТРИКА ДЕВЕЛОПМЕНТ</title>
+<title>Система KPI управляющего за ведение CRM</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%;font-family:'Segoe UI',Arial,sans-serif;background:#1e293b;overflow:hidden}
 .deck{position:relative;width:100vw;height:100vh;display:flex;align-items:center;justify-content:center}
-.slide{width:1280px;height:720px;background:#fff;border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,.35);padding:45px 60px 40px;display:none;flex-direction:column;position:relative;overflow:hidden;transform-origin:center}
+.slide{width:1280px;height:720px;background:#fff;border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,.35);padding:40px 55px 35px;display:none;flex-direction:column;position:relative;overflow:hidden;transform-origin:center}
 .slide.active{display:flex}
 @media(max-width:1360px),(max-height:780px){.slide{transform:scale(.85)}}
 @media(max-width:1100px),(max-height:660px){.slide{transform:scale(.7)}}
 @media(max-width:900px),(max-height:540px){.slide{transform:scale(.55)}}
 .slide::before{content:'';position:absolute;top:0;left:0;width:100%;height:6px;background:linear-gradient(90deg,#1e3a8a,#f59e0b)}
-h1{font-size:26px;color:#0f172a;letter-spacing:.5px;line-height:1.25}
-.sub{font-size:16px;color:#64748b;margin-top:6px;font-style:italic}
-.divider{height:2px;background:#e2e8f0;margin:18px 0 22px}
-.cols{display:flex;gap:40px;flex:1}
+h1{font-size:24px;color:#0f172a;letter-spacing:.5px;line-height:1.25}
+.sub{font-size:14px;color:#64748b;margin-top:5px;font-style:italic}
+.divider{height:2px;background:#e2e8f0;margin:14px 0 18px}
+.cols{display:flex;gap:30px;flex:1}
 .col{flex:1}
-.col h2{font-size:15px;text-transform:uppercase;letter-spacing:1.5px;color:#94a3b8;margin-bottom:16px}
+.col h2{font-size:14px;text-transform:uppercase;letter-spacing:1.5px;color:#94a3b8;margin-bottom:12px}
 .col ul{list-style:none}
-.col ul li{font-size:17px;color:#1e293b;padding:12px 0 12px 28px;position:relative;line-height:1.5;border-bottom:1px solid #f1f5f9}
-.col ul li::before{content:'●';position:absolute;left:0;color:#f59e0b;font-size:14px;top:15px}
-.note{display:block;font-size:14px;color:#64748b;font-style:italic;margin-top:4px}
-.formula{background:#0f172a;color:#fff;padding:24px;border-radius:12px;text-align:center;font-size:22px;font-weight:600;letter-spacing:.5px;margin-bottom:18px;box-shadow:0 8px 24px rgba(15,23,42,.25)}
+.col ul li{font-size:15px;color:#1e293b;padding:10px 0 10px 26px;position:relative;line-height:1.5;border-bottom:1px solid #f1f5f9}
+.col ul li::before{content:'●';position:absolute;left:0;color:#f59e0b;font-size:13px;top:13px}
+.note{display:block;font-size:13px;color:#64748b;font-style:italic;margin-top:3px}
+.formula{background:#0f172a;color:#fff;padding:20px;border-radius:12px;text-align:center;font-size:20px;font-weight:600;letter-spacing:.5px;margin-bottom:14px;box-shadow:0 8px 24px rgba(15,23,42,.25)}
 .formula span{color:#f59e0b}
-.rule-list li{font-size:16px}
-.rule-list li::before{content:'→';color:#1e3a8a}
-.footer{margin-top:24px;text-align:center;font-size:14px;color:#94a3b8;font-style:italic}
-table{width:100%;border-collapse:separate;border-spacing:0;font-size:15px;flex:1}
-thead th{background:#0f172a;color:#fff;padding:12px 8px;text-align:center;font-weight:600;font-size:13px;text-transform:uppercase;letter-spacing:.5px}
+.footer{margin-top:18px;text-align:center;font-size:13px;color:#94a3b8;font-style:italic}
+table{width:100%;border-collapse:separate;border-spacing:0;font-size:14px}
+thead th{background:#0f172a;color:#fff;padding:10px 6px;text-align:center;font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.5px}
 thead th:first-child{border-radius:8px 0 0 0}
 thead th:last-child{border-radius:0 8px 0 0}
-tbody td{padding:11px 8px;text-align:center;border-bottom:1px solid #e2e8f0;color:#1e293b}
+tbody td{padding:9px 6px;text-align:center;border-bottom:1px solid #e2e8f0;color:#1e293b}
 tbody tr:nth-child(even){background:#f8fafc}
 .freeze{color:#d32f2f;font-weight:700}
 .payout{color:#2e7d32;font-weight:700}
 .num{font-variant-numeric:tabular-nums}
-.conclusion{margin-top:20px;background:#fff7ed;border-left:4px solid #f59e0b;padding:16px 20px;border-radius:8px;font-size:16px;color:#0f172a;text-align:center}
+.conclusion{margin-top:14px;background:#fff7ed;border-left:4px solid #f59e0b;padding:14px 18px;border-radius:8px;font-size:14px;color:#0f172a;text-align:center}
 .conclusion b{color:#b45309}
-.nav{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:16px;background:rgba(15,23,42,.85);padding:10px 20px;border-radius:40px;backdrop-filter:blur(8px);z-index:100}
-.nav button{background:transparent;border:none;color:#fff;font-size:20px;cursor:pointer;padding:6px 12px;border-radius:20px;transition:background .15s}
+.nav{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:14px;background:rgba(15,23,42,.85);padding:9px 18px;border-radius:40px;backdrop-filter:blur(8px);z-index:100}
+.nav button{background:transparent;border:none;color:#fff;font-size:19px;cursor:pointer;padding:5px 11px;border-radius:20px;transition:background .15s}
 .nav button:hover:not(:disabled){background:rgba(255,255,255,.15)}
 .nav button:disabled{opacity:.3;cursor:default}
-.nav .counter{color:#fff;font-size:14px;font-weight:600;min-width:60px;text-align:center;font-variant-numeric:tabular-nums}
+.nav .counter{color:#fff;font-size:13px;font-weight:600;min-width:55px;text-align:center;font-variant-numeric:tabular-nums}
 .progress{position:fixed;top:0;left:0;height:4px;background:linear-gradient(90deg,#1e3a8a,#f59e0b);transition:width .25s ease;z-index:100}
+
+/* Калькулятор */
+.calc-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;flex:1}
+.calc-block{display:flex;flex-direction:column;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:12px 14px}
+.calc-block h3{font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:#94a3b8;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid #e2e8f0}
+.calc-block h3 span{color:#f59e0b;font-weight:700}
+.crit{margin-bottom:8px}
+.crit label{display:block;font-size:11px;color:#475569;margin-bottom:3px;line-height:1.3}
+.crit input{width:100%;padding:5px 8px;font-size:13px;font-weight:600;color:#0f172a;border:2px solid #cbd5e1;border-radius:6px;background:#fff;font-variant-numeric:tabular-nums}
+.crit input:focus{outline:none;border-color:#1e3a8a;box-shadow:0 0 0 3px rgba(30,58,138,.1)}
+.crit .coef{display:inline-block;margin-top:2px;font-size:10px;font-weight:700;padding:1px 6px;border-radius:8px}
+.coef-100{background:#dcfce7;color:#166534}
+.coef-70{background:#fef3c7;color:#92400e}
+.coef-50{background:#fed7aa;color:#9a3412}
+.coef-fine{background:#fecaca;color:#991b1b}
+
+.kpi-result{background:#0f172a;color:#fff;border-radius:10px;padding:12px 14px;margin-top:auto}
+.kpi-result .lbl{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:#94a3b8;margin-bottom:4px}
+.kpi-result .val{font-size:22px;font-weight:700;color:#f59e0b;font-variant-numeric:tabular-nums}
+
+.bottom-summary{display:flex;gap:12px;margin-top:14px}
+.summary-card{flex:1;background:#0f172a;color:#fff;border-radius:10px;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 8px 24px rgba(15,23,42,.25)}
+.summary-card.fine{background:#991b1b}
+.summary-card.total{background:linear-gradient(135deg,#1e3a8a,#0f172a)}
+.summary-card .lbl{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:#cbd5e1}
+.summary-card .val{font-size:20px;font-weight:700;color:#f59e0b;font-variant-numeric:tabular-nums}
+
+.settings-row{display:flex;gap:14px;margin-bottom:12px}
+.settings-row .setting{flex:1;background:#f1f5f9;border-radius:8px;padding:8px 12px;display:flex;justify-content:space-between;align-items:center}
+.settings-row .setting label{font-size:12px;color:#475569;font-weight:600}
+.settings-row .setting input{width:120px;padding:5px 8px;font-size:13px;font-weight:700;color:#0f172a;border:2px solid #cbd5e1;border-radius:6px;text-align:right;font-variant-numeric:tabular-nums}
+.settings-row .setting input:focus{outline:none;border-color:#1e3a8a}
 </style>
 </head><body>
 
@@ -54,187 +84,241 @@ tbody tr:nth-child(even){background:#f8fafc}
 
   <!-- СЛАЙД 1 -->
   <div class="slide active">
-    <h1>СИСТЕМА KPI УПРАВЛЯЮЩЕГО ЗА РАБОТУ В CRM СИСТЕМЕ</h1>
+    <h1>СИСТЕМА KPI УПРАВЛЯЮЩЕГО ЗА ВЕДЕНИЕ CRM</h1>
     <div class="sub">МЕТРИКА ДЕВЕЛОПМЕНТ · От принятого лида до результата сделки</div>
     <div class="divider"></div>
 
     <div class="cols">
       <div class="col">
-        <h2>Структура дохода</h2>
+        <h2>3 KPI · веса</h2>
         <ul>
-          <li>Фиксированная часть — <b>ФИКС</b><span class="note">Индивидуально</span></li>
-          <li>KPI-бонус за ведение CRM — <b>до 30 000 ₽</b><span class="note">6 показателей работы в Bitrix24</span></li>
+          <li>
+            <b>KPI 1 — Отработка новых лидов</b> — <b style="color:#f59e0b">40%</b>
+            <span class="note">Ответ ≤15 мин · Перезвон ≤15 мин · Ночные → до 09:00</span>
+          </li>
+          <li>
+            <b>KPI 2 — Ведение карточки</b> — <b style="color:#f59e0b">30%</b>
+            <span class="note">Активный запрос = активная карточка · Нет пустых полей · Нет просрочек</span>
+          </li>
+          <li>
+            <b>KPI 3 — Отработка касаний</b> — <b style="color:#f59e0b">30%</b>
+            <span class="note">Закрытие после 5 касаний · Указание причины закрытия</span>
+          </li>
         </ul>
       </div>
 
       <div class="col">
-        <h2>Ключевой принцип</h2>
-        <div class="formula">KPI-бонус = <span>30 000 ₽</span> × KPI</div>
-        <ul class="rule-list">
-          <li>Если KPI &gt; 0 — штраф уменьшает бонус <b>не более чем на 50%</b></li>
-          <li>Если KPI = 0 — KPI-бонус = <b>0 ₽</b></li>
+        <h2>Шкала оценки коэффициентов</h2>
+        <div class="formula">95–100% → <span>100%</span></div>
+        <ul style="list-style:none">
+          <li style="font-size:15px;padding:8px 0;color:#1e293b">85–94% → <b style="color:#92400e">70%</b></li>
+          <li style="font-size:15px;padding:8px 0;color:#1e293b">75–84% → <b style="color:#9a3412">50%</b></li>
+          <li style="font-size:15px;padding:8px 0;color:#991b1b;font-weight:700">Ниже 75% → штраф 5% от оклада</li>
         </ul>
       </div>
     </div>
 
     <div class="footer">
-      Доход = ФИКС + до 30 000 ₽ (KPI за ведение CRM)
+      Мотивация начинается с момента передачи заинтересованного лида от квалификатора
     </div>
   </div>
 
   <!-- СЛАЙД 2 -->
   <div class="slide">
-    <h1>КАРТА KPI: 6 ПОКАЗАТЕЛЕЙ РАБОТЫ В BITRIX24</h1>
-    <div class="sub">KPI = Σ (Факт / Цель × Вес) · Лимит штрафа –50%</div>
+    <h1>КАРТА KPI: КРИТЕРИИ И ЦЕЛИ</h1>
+    <div class="sub">Итоговый KPI = KPI 1 × 40% + KPI 2 × 30% + KPI 3 × 30%</div>
     <div class="divider"></div>
 
     <table>
       <thead>
         <tr>
-          <th style="width:5%">№</th>
-          <th style="width:36%">KPI</th>
-          <th style="width:13%">Цель</th>
-          <th style="width:10%">Вес</th>
-          <th style="width:36%">Штраф</th>
+          <th style="width:8%">KPI</th>
+          <th style="width:30%">Критерий</th>
+          <th style="width:15%">Цель</th>
+          <th style="width:12%">Вес</th>
+          <th style="width:35%">Что фиксируем</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>1</td>
-          <td style="text-align:left;padding-left:16px">
-            <b>Чекин: график работы</b>
-            <span style="display:block;font-size:12px;color:#64748b;font-style:italic;margin-top:2px">день не открыт / день не закрыт / пропущен рабочий день</span>
-          </td>
-          <td class="num">100%</td>
-          <td class="num"><b>15%</b></td>
-          <td style="text-align:left;padding-left:10px;font-size:12px">
-            –5% за день без Чекина<br>
-            <span style="color:#d32f2f;font-weight:700">–50% за пропущенный день</span>
-          </td>
+          <td rowspan="3" style="background:#f1f5f9;font-weight:700;vertical-align:middle;font-size:16px">1</td>
+          <td style="text-align:left;padding-left:14px">Скорость ответа на новый лид</td>
+          <td class="num"><b>100%</b></td>
+          <td class="num" rowspan="3" style="background:#f1f5f9;vertical-align:middle;font-weight:700;font-size:16px;color:#f59e0b">40%</td>
+          <td style="text-align:left;padding-left:14px;font-size:13px">≤ 15 мин с момента передачи</td>
         </tr>
         <tr>
-          <td>2</td>
-          <td style="text-align:left;padding-left:16px"><b>Комментарий за ≤10 мин</b><span style="display:block;font-size:12px;color:#64748b;font-style:italic">5 строк: пришёл за · рассматривает · бюджет · итог · следующий шаг</span></td>
-          <td class="num">≥ 90%</td>
-          <td class="num"><b>20%</b></td>
-          <td style="text-align:left;padding-left:10px;font-size:12px">–10% за диалог</td>
+          <td style="text-align:left;padding-left:14px">Перезвон на пропущенный звонок</td>
+          <td class="num"><b>100%</b></td>
+          <td style="text-align:left;padding-left:14px;font-size:13px">≤ 15 мин</td>
         </tr>
         <tr>
-          <td>3</td>
-          <td style="text-align:left;padding-left:16px"><b>Заполнение всех полей слева</b></td>
-          <td class="num">100%</td>
-          <td class="num"><b>20%</b></td>
-          <td style="text-align:left;padding-left:10px;font-size:12px">–5% за клиента</td>
+          <td style="text-align:left;padding-left:14px">Звонки с 18:00 и ночью</td>
+          <td class="num"><b>100%</b></td>
+          <td style="text-align:left;padding-left:14px;font-size:13px">Ответить до 09:00</td>
+        </tr>
+
+        <tr>
+          <td rowspan="3" style="background:#f1f5f9;font-weight:700;vertical-align:middle;font-size:16px">2</td>
+          <td style="text-align:left;padding-left:14px">Активный запрос = активная карточка</td>
+          <td class="num"><b>100%</b></td>
+          <td class="num" rowspan="3" style="background:#f1f5f9;vertical-align:middle;font-weight:700;font-size:16px;color:#f59e0b">30%</td>
+          <td style="text-align:left;padding-left:14px;font-size:13px">Каждая сделка в работе</td>
         </tr>
         <tr>
-          <td>4</td>
-          <td style="text-align:left;padding-left:16px"><b>Следующая задача</b><span style="display:block;font-size:12px;color:#64748b;font-style:italic">действие + исполнитель + срок</span></td>
-          <td class="num">100%</td>
-          <td class="num"><b>20%</b></td>
-          <td style="text-align:left;padding-left:10px;font-size:12px">–5% за сделку</td>
+          <td style="text-align:left;padding-left:14px">Отсутствие пустых полей в карточке</td>
+          <td class="num"><b>95%</b></td>
+          <td style="text-align:left;padding-left:14px;font-size:13px">Обязательные поля слева</td>
         </tr>
         <tr>
-          <td>5</td>
-          <td style="text-align:left;padding-left:16px"><b>Соответствие стадии факту</b></td>
-          <td class="num">100%</td>
-          <td class="num"><b>15%</b></td>
-          <td style="text-align:left;padding-left:10px;font-size:12px">–15% за нарушение</td>
+          <td style="text-align:left;padding-left:14px">Отсутствие просрочек задач</td>
+          <td class="num"><b>100%</b></td>
+          <td style="text-align:left;padding-left:14px;font-size:13px">Задачи со сроком</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2" style="background:#f1f5f9;font-weight:700;vertical-align:middle;font-size:16px">3</td>
+          <td style="text-align:left;padding-left:14px">Закрытие карточки только после 5 касаний</td>
+          <td class="num"><b>100%</b></td>
+          <td class="num" rowspan="2" style="background:#f1f5f9;vertical-align:middle;font-weight:700;font-size:16px;color:#f59e0b">30%</td>
+          <td style="text-align:left;padding-left:14px;font-size:13px">История касаний</td>
         </tr>
         <tr>
-          <td>6</td>
-          <td style="text-align:left;padding-left:16px"><b>Нет просроченных задач</b></td>
-          <td class="num">≤ 5%</td>
-          <td class="num"><b>10%</b></td>
-          <td style="text-align:left;padding-left:10px;font-size:12px">–5% за просрочку</td>
-        </tr>
-        <tr style="background:#0f172a;color:#fff">
-          <td colspan="3" style="text-align:right;padding-right:16px;color:#fff;font-weight:700">ИТОГО</td>
-          <td class="num" style="color:#f59e0b;font-weight:700">100%</td>
-          <td style="color:#cbd5e1;font-size:12px;text-align:left;padding-left:10px">Лимит штрафа: –50%</td>
+          <td style="text-align:left;padding-left:14px">Закрытие с указанием причины</td>
+          <td class="num"><b>100%</b></td>
+          <td style="text-align:left;padding-left:14px;font-size:13px">Отказ / просьба не связываться / невалидный контакт / дубль</td>
         </tr>
       </tbody>
     </table>
 
     <div class="conclusion">
-      KPI-бонус = <b>30 000 ₽ × KPI × (1 – Σ Штрафы)</b> · Если KPI &gt; 0, штраф уменьшает бонус <b>не более чем на 50%</b> · Если KPI = 0 — бонус = 0 ₽
+      Итоговый KPI = <b>(KPI 1 × 40%) + (KPI 2 × 30%) + (KPI 3 × 30%)</b>
     </div>
 
     <div class="footer">
-      Считается автоматически по истории Bitrix24 и телефонии
+      Коэффициенты считаются суммарно по каждому критерию
     </div>
   </div>
 
   <!-- СЛАЙД 3 -->
   <div class="slide">
-    <h1>ПРИМЕР РАСЧЁТА KPI-БОНУСА СО ШТРАФАМИ</h1>
-    <div class="sub">Формула: KPI = Σ (Факт / Цель × Вес) · Бонус = 30 000 ₽ × KPI × (1 – min(Σ Штрафы; 50%))</div>
+    <h1>КАЛЬКУЛЯТОР KPI</h1>
+    <div class="sub">Введите фактические проценты по каждому критерию — расчёт автоматический</div>
     <div class="divider"></div>
 
-    <div style="display:flex;gap:24px;flex:1;min-height:0">
-      <div style="flex:1.15;display:flex;flex-direction:column">
-        <h2 style="font-size:13px;text-transform:uppercase;letter-spacing:1.5px;color:#94a3b8;margin-bottom:10px">Расчёт KPI</h2>
-        <table style="font-size:13px">
-          <thead>
-            <tr><th style="width:6%">№</th><th style="width:30%">KPI</th><th style="width:12%">Цель</th><th style="width:12%">Факт</th><th style="width:12%">Ф/Ц</th><th style="width:10%">Вес</th><th style="width:18%">Вклад</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>1</td><td style="text-align:left;padding-left:10px">Чекин</td><td class="num">100%</td><td class="num">95%</td><td class="num">0,95</td><td class="num">15%</td><td class="num payout">14,25%</td></tr>
-            <tr><td>2</td><td style="text-align:left;padding-left:10px">Комментарий</td><td class="num">90%</td><td class="num">92%</td><td class="num">1,00</td><td class="num">20%</td><td class="num payout">20,0%</td></tr>
-            <tr><td>3</td><td style="text-align:left;padding-left:10px">Заполнение полей</td><td class="num">100%</td><td class="num">96%</td><td class="num">0,96</td><td class="num">20%</td><td class="num payout">19,2%</td></tr>
-            <tr><td>4</td><td style="text-align:left;padding-left:10px">Следующая задача</td><td class="num">100%</td><td class="num">98%</td><td class="num">0,98</td><td class="num">20%</td><td class="num payout">19,6%</td></tr>
-            <tr><td>5</td><td style="text-align:left;padding-left:10px">Стадия = факт</td><td class="num">100%</td><td class="num">97%</td><td class="num">0,97</td><td class="num">15%</td><td class="num payout">14,55%</td></tr>
-            <tr><td>6</td><td style="text-align:left;padding-left:10px">Просрочки</td><td class="num">≤5%</td><td class="num">4%</td><td class="num">1,00</td><td class="num">10%</td><td class="num payout">10,0%</td></tr>
-            <tr style="background:#0f172a;color:#fff"><td colspan="5" style="text-align:right;padding-right:10px;color:#fff;font-weight:700;font-size:13px">ИТОГОВЫЙ KPI</td><td class="num" style="color:#fff">100%</td><td class="num" style="color:#f59e0b;font-weight:700">97,6%</td></tr>
-          </tbody>
-        </table>
-        <div class="conclusion" style="margin-top:14px;padding:12px 16px;font-size:14px">Итоговый KPI <b>97,6%</b> — выше цели ≥ 90% ✅</div>
+    <div class="settings-row">
+      <div class="setting"><label>Оклад, ₽</label><input type="number" id="salary" value="100000" min="0" oninput="calc()"></div>
+      <div class="setting"><label>KPI-бонус, ₽</label><input type="number" id="bonus" value="30000" min="0" oninput="calc()"></div>
+    </div>
+
+    <div class="calc-grid">
+      <!-- KPI 1 -->
+      <div class="calc-block">
+        <h3>KPI 1 · Лиды <span>40%</span></h3>
+        <div class="crit">
+          <label>Скорость ответа ≤ 15 мин</label>
+          <input type="number" id="k1c1" value="97" min="0" max="100" oninput="calc()">
+          <span class="coef" id="k1c1c">100%</span>
+        </div>
+        <div class="crit">
+          <label>Перезвон ≤ 15 мин</label>
+          <input type="number" id="k1c2" value="92" min="0" max="100" oninput="calc()">
+          <span class="coef" id="k1c2c">70%</span>
+        </div>
+        <div class="crit">
+          <label>Ночные звонки → до 09:00</label>
+          <input type="number" id="k1c3" value="96" min="0" max="100" oninput="calc()">
+          <span class="coef" id="k1c3c">100%</span>
+        </div>
+        <div class="kpi-result">
+          <div class="lbl">KPI 1</div>
+          <div class="val" id="k1res">90,0%</div>
+        </div>
       </div>
 
-      <div style="flex:1;display:flex;flex-direction:column">
-        <h2 style="font-size:13px;text-transform:uppercase;letter-spacing:1.5px;color:#94a3b8;margin-bottom:10px">Расчёт штрафов</h2>
-        <table style="font-size:13px">
-          <thead>
-            <tr><th style="width:6%">№</th><th style="width:24%">KPI</th><th style="width:30%">Нарушение</th><th style="width:11%">Кол-во</th><th style="width:12%">Штраф</th><th style="width:17%">Итого</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>1</td><td style="text-align:left;padding-left:10px">Чекин</td><td style="text-align:left;padding-left:10px">День не закрыт</td><td class="num">2</td><td class="num">–5%</td><td class="num freeze">–10%</td></tr>
-            <tr><td>2</td><td style="text-align:left;padding-left:10px">Комментарий</td><td style="text-align:left;padding-left:10px">Неполные 5 строк</td><td class="num">2</td><td class="num">–10%</td><td class="num freeze">–20%</td></tr>
-            <tr><td>3</td><td style="text-align:left;padding-left:10px">Заполнение полей</td><td style="text-align:left;padding-left:10px">Клиент с пустыми полями</td><td class="num">2</td><td class="num">–5%</td><td class="num freeze">–10%</td></tr>
-            <tr style="background:#fef2f2"><td colspan="5" style="text-align:right;padding-right:10px;font-weight:700;color:#991b1b">Σ ШТРАФОВ</td><td class="num freeze" style="font-size:15px">–40%</td></tr>
-            <tr style="background:#fff7ed"><td colspan="5" style="text-align:right;padding-right:10px;font-weight:700;color:#9a3412">ПРИМЕНЕНО</td><td class="num" style="color:#c2410c;font-weight:700">–40%</td></tr>
-          </tbody>
-        </table>
-        <div class="conclusion" style="margin-top:14px;padding:12px 16px;font-size:14px;background:#fef2f2;border-left-color:#d32f2f">Штраф <b>–40%</b> — в пределах лимита –50%</div>
+      <!-- KPI 2 -->
+      <div class="calc-block">
+        <h3>KPI 2 · Карточка <span>30%</span></h3>
+        <div class="crit">
+          <label>Активный запрос = активная карточка</label>
+          <input type="number" id="k2c1" value="98" min="0" max="100" oninput="calc()">
+          <span class="coef" id="k2c1c">100%</span>
+        </div>
+        <div class="crit">
+          <label>Нет пустых полей (цель 95%)</label>
+          <input type="number" id="k2c2" value="94" min="0" max="100" oninput="calc()">
+          <span class="coef" id="k2c2c">70%</span>
+        </div>
+        <div class="crit">
+          <label>Нет просрочек задач</label>
+          <input type="number" id="k2c3" value="99" min="0" max="100" oninput="calc()">
+          <span class="coef" id="k2c3c">100%</span>
+        </div>
+        <div class="kpi-result">
+          <div class="lbl">KPI 2</div>
+          <div class="val" id="k2res">90,0%</div>
+        </div>
+      </div>
+
+      <!-- KPI 3 -->
+      <div class="calc-block">
+        <h3>KPI 3 · Касания <span>30%</span></h3>
+        <div class="crit">
+          <label>Закрытие после 5 касаний</label>
+          <input type="number" id="k3c1" value="95" min="0" max="100" oninput="calc()">
+          <span class="coef" id="k3c1c">100%</span>
+        </div>
+        <div class="crit">
+          <label>Указание причины закрытия</label>
+          <input type="number" id="k3c2" value="90" min="0" max="100" oninput="calc()">
+          <span class="coef" id="k3c2c">70%</span>
+        </div>
+        <div class="kpi-result">
+          <div class="lbl">KPI 3</div>
+          <div class="val" id="k3res">85,0%</div>
+        </div>
       </div>
     </div>
 
-    <div style="margin-top:18px;background:#0f172a;color:#fff;padding:18px 24px;border-radius:12px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 8px 24px rgba(15,23,42,.25)">
-      <div style="font-size:14px;color:#cbd5e1;letter-spacing:.5px">KPI-БОНУС = 30 000 ₽ × 97,6% × (1 – 40%)</div>
-      <div style="font-size:24px;font-weight:700;color:#f59e0b;font-variant-numeric:tabular-nums">17 568 ₽</div>
+    <div class="bottom-summary">
+      <div class="summary-card">
+        <div class="lbl">Итоговый KPI</div>
+        <div class="val" id="totalKpi">88,5%</div>
+      </div>
+      <div class="summary-card fine" id="fineCard" style="display:none">
+        <div class="lbl">Штраф от оклада</div>
+        <div class="val" id="fineVal">0 ₽</div>
+      </div>
+      <div class="summary-card total">
+        <div class="lbl">KPI-бонус</div>
+        <div class="val" id="totalBonus">26 550 ₽</div>
+      </div>
     </div>
-
-    <div class="footer">KPI считается по истории Bitrix24 · Если KPI &gt; 0 — штраф не более 50% · Если KPI = 0 — бонус = 0 ₽</div>
   </div>
 
   <!-- СЛАЙД 4 -->
   <div class="slide">
     <h1>ИТОГОВЫЙ ДОХОД ЗА МЕСЯЦ</h1>
-    <div class="sub">ФИКС + KPI-бонус за ведение CRM</div>
+    <div class="sub">Оклад ± штраф + KPI-бонус</div>
     <div class="divider"></div>
 
     <table>
       <thead>
-        <tr><th style="width:40%">Компонент</th><th style="width:35%">Расчёт</th><th style="width:25%">Сумма</th></tr>
+        <tr><th style="width:50%">Компонент</th><th style="width:25%">Расчёт</th><th style="width:25%">Сумма</th></tr>
       </thead>
       <tbody>
-        <tr><td style="text-align:left;padding-left:16px"><b>ФИКС</b></td><td>—</td><td class="num payout">—</td></tr>
-        <tr><td style="text-align:left;padding-left:16px">KPI-бонус за CRM</td><td class="num">30 000 × 0,976 × 0,6</td><td class="num payout">17 568 ₽</td></tr>
-        <tr style="background:#0f172a;color:#fff"><td colspan="2" style="text-align:right;padding-right:16px;color:#fff;font-weight:700;font-size:18px">ИТОГО (без ФИКС)</td><td class="num" style="color:#f59e0b;font-weight:700;font-size:20px">17 568 ₽</td></tr>
+        <tr><td style="text-align:left;padding-left:16px"><b>Оклад</b></td><td>—</td><td class="num payout" id="s4-oklad">100 000 ₽</td></tr>
+        <tr><td style="text-align:left;padding-left:16px">Штраф от оклада (при коэффициенте &lt;75%)</td><td class="num" id="s4-fine-calc">—</td><td class="num freeze" id="s4-fine">0 ₽</td></tr>
+        <tr><td style="text-align:left;padding-left:16px">KPI-бонус</td><td class="num" id="s4-bonus-calc">30 000 × 88,5%</td><td class="num payout" id="s4-bonus">26 550 ₽</td></tr>
+        <tr style="background:#0f172a;color:#fff">
+          <td colspan="2" style="text-align:right;padding-right:16px;color:#fff;font-weight:700;font-size:18px">ИТОГО</td>
+          <td class="num" style="color:#f59e0b;font-weight:700;font-size:20px" id="s4-total">126 550 ₽</td>
+        </tr>
       </tbody>
     </table>
 
     <div class="conclusion">
-      <b>Ключевые правила:</b> KPI считается по 6 показателям Bitrix24 · если KPI &gt; 0, штраф уменьшает бонус не более чем на 50% · если KPI = 0 — бонус = 0 ₽
+      <b>Ключевые правила:</b> KPI-бонус зависит от итогового KPI · штраф 5% от оклада за каждый критерий ниже 75% · мотивация с момента передачи заинтересованного лида
     </div>
 
     <div class="footer">Все суммы в рублях · Расчёт автоматический в Bitrix24</div>
@@ -249,6 +333,7 @@ tbody tr:nth-child(even){background:#f8fafc}
 </div>
 
 <script>
+/* ── НАВИГАЦИЯ ─────────────────────────────── */
 let current = 0;
 const slides = document.querySelectorAll('.slide');
 const counter = document.getElementById('counter');
@@ -263,6 +348,7 @@ function show(i) {
   progress.style.width = ((i + 1) / total * 100) + '%';
   document.getElementById('prev').disabled = i === 0;
   document.getElementById('next').disabled = i === total - 1;
+  if (i === 2) calc();
 }
 function go(dir) {
   const next = current + dir;
@@ -280,7 +366,84 @@ document.addEventListener('touchend', e => {
   const dx = e.changedTouches[0].clientX - touchStartX;
   if (Math.abs(dx) > 50) go(dx < 0 ? 1 : -1);
 });
+
+/* ── КАЛЬКУЛЯТОР ───────────────────────────── */
+const fmt = n => Math.round(n).toLocaleString('ru-RU') + ' ₽';
+
+function coefOf(val) {
+  if (val >= 95) return { coef: 100, cls: 'coef-100', label: '100%' };
+  if (val >= 85) return { coef: 70,  cls: 'coef-70',  label: '70%' };
+  if (val >= 75) return { coef: 50,  cls: 'coef-50',  label: '50%' };
+  return { coef: 0, cls: 'coef-fine', label: 'штраф' };
+}
+
+function setCoefUI(id, c) {
+  const el = document.getElementById(id);
+  el.className = 'coef ' + c.cls;
+  el.textContent = c.label;
+}
+
+function calc() {
+  const salary = +document.getElementById('salary').value || 0;
+  const bonusBase = +document.getElementById('bonus').value || 0;
+
+  /* KPI 1 */
+  const k1c1 = +document.getElementById('k1c1').value || 0;
+  const k1c2 = +document.getElementById('k1c2').value || 0;
+  const k1c3 = +document.getElementById('k1c3').value || 0;
+  const c1a = coefOf(k1c1), c1b = coefOf(k1c2), c1c = coefOf(k1c3);
+  setCoefUI('k1c1c', c1a); setCoefUI('k1c2c', c1b); setCoefUI('k1c3c', c1c);
+  const k1 = (c1a.coef + c1b.coef + c1c.coef) / 3;
+
+  /* KPI 2 */
+  const k2c1 = +document.getElementById('k2c1').value || 0;
+  const k2c2 = +document.getElementById('k2c2').value || 0;
+  const k2c3 = +document.getElementById('k2c3').value || 0;
+  const c2a = coefOf(k2c1), c2b = coefOf(k2c2), c2c = coefOf(k2c3);
+  setCoefUI('k2c1c', c2a); setCoefUI('k2c2c', c2b); setCoefUI('k2c3c', c2c);
+  const k2 = (c2a.coef + c2b.coef + c2c.coef) / 3;
+
+  /* KPI 3 */
+  const k3c1 = +document.getElementById('k3c1').value || 0;
+  const k3c2 = +document.getElementById('k3c2').value || 0;
+  const c3a = coefOf(k3c1), c3b = coefOf(k3c2);
+  setCoefUI('k3c1c', c3a); setCoefUI('k3c2c', c3b);
+  const k3 = (c3a.coef + c3b.coef) / 2;
+
+  /* Итоговый KPI */
+  const totalKpi = k1 * 0.4 + k2 * 0.3 + k3 * 0.3;
+  document.getElementById('k1res').textContent = k1.toFixed(1).replace('.', ',') + '%';
+  document.getElementById('k2res').textContent = k2.toFixed(1).replace('.', ',') + '%';
+  document.getElementById('k3res').textContent = k3.toFixed(1).replace('.', ',') + '%';
+  document.getElementById('totalKpi').textContent = totalKpi.toFixed(1).replace('.', ',') + '%';
+
+  /* Штраф от оклада: 5% за каждый критерий < 75% */
+  let fineCount = 0;
+  [k1c1, k1c2, k1c3, k2c1, k2c2, k2c3, k3c1, k3c2].forEach(v => { if (v < 75) fineCount++; });
+  const fine = salary * 0.05 * fineCount;
+  const fineCard = document.getElementById('fineCard');
+  if (fine > 0) {
+    fineCard.style.display = 'flex';
+    document.getElementById('fineVal').textContent = fmt(fine);
+  } else {
+    fineCard.style.display = 'none';
+  }
+
+  /* KPI-бонус */
+  const kpiBonus = bonusBase * (totalKpi / 100);
+
+  /* Слайд 4 */
+  document.getElementById('s4-oklad').textContent = fmt(salary);
+  document.getElementById('s4-fine-calc').textContent = fineCount > 0 ? fineCount + ' × 5% × ' + Math.round(salary) : '—';
+  document.getElementById('s4-fine').textContent = fmt(fine);
+  document.getElementById('s4-bonus-calc').textContent = Math.round(bonusBase).toLocaleString('ru-RU') + ' × ' + totalKpi.toFixed(1).replace('.', ',') + '%';
+  document.getElementById('s4-bonus').textContent = fmt(kpiBonus);
+  document.getElementById('s4-total').textContent = fmt(salary - fine + kpiBonus);
+  document.getElementById('totalBonus').textContent = fmt(kpiBonus);
+}
+
 show(0);
+calc();
 </script>
 
 </body>
