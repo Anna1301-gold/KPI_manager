@@ -32,6 +32,7 @@ thead th:first-child{border-radius:8px 0 0 0}
 thead th:last-child{border-radius:0 8px 0 0}
 tbody td{padding:8px 6px;text-align:center;border-bottom:1px solid #e2e8f0;color:#1e293b}
 tbody tr:nth-child(even){background:#f8fafc}
+tbody tr.kpi-sep td{border-top:3px solid #0f172a}
 .freeze{color:#d32f2f;font-weight:700}
 .payout{color:#2e7d32;font-weight:700}
 .num{font-variant-numeric:tabular-nums}
@@ -44,7 +45,6 @@ tbody tr:nth-child(even){background:#f8fafc}
 .nav .counter{color:#fff;font-size:13px;font-weight:600;min-width:55px;text-align:center;font-variant-numeric:tabular-nums}
 .progress{position:fixed;top:0;left:0;height:4px;background:linear-gradient(90deg,#1e3a8a,#f59e0b);transition:width .25s ease;z-index:100}
 
-/* Калькулятор */
 .calc-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;flex:1;min-height:0}
 .calc-block{display:flex;flex-direction:column;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:10px 12px;overflow:hidden}
 .calc-block h3{font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:#94a3b8;margin-bottom:8px;padding-bottom:5px;border-bottom:1px solid #e2e8f0}
@@ -158,7 +158,7 @@ tbody tr:nth-child(even){background:#f8fafc}
           <td style="text-align:left;padding-left:12px;font-size:12px">Ответить до 09:00</td>
         </tr>
 
-        <tr>
+        <tr class="kpi-sep">
           <td rowspan="4" style="background:#f1f5f9;font-weight:700;vertical-align:middle;font-size:15px">2</td>
           <td style="text-align:left;padding-left:12px">Активный запрос = активная карточка</td>
           <td class="num"><b>100%</b></td>
@@ -171,7 +171,7 @@ tbody tr:nth-child(even){background:#f8fafc}
           <td style="text-align:left;padding-left:12px;font-size:12px">Обязательные поля слева</td>
         </tr>
         <tr>
-          <td style="text-align:left;padding-left:12px"><b>У активной карточки назначено следующее действие</b></td>
+          <td style="text-align:left;padding-left:12px">У активной карточки назначено следующее действие</td>
           <td class="num"><b>100%</b></td>
           <td style="text-align:left;padding-left:12px;font-size:12px">Встреча, звонок, отправка материалов и т.п.</td>
         </tr>
@@ -181,7 +181,7 @@ tbody tr:nth-child(even){background:#f8fafc}
           <td style="text-align:left;padding-left:12px;font-size:12px">Задачи со сроком</td>
         </tr>
 
-        <tr>
+        <tr class="kpi-sep">
           <td rowspan="2" style="background:#f1f5f9;font-weight:700;vertical-align:middle;font-size:15px">3</td>
           <td style="text-align:left;padding-left:12px">Закрытие карточки только после 5 касаний</td>
           <td class="num"><b>100%</b></td>
@@ -217,7 +217,6 @@ tbody tr:nth-child(even){background:#f8fafc}
     </div>
 
     <div class="calc-grid">
-      <!-- KPI 1 -->
       <div class="calc-block">
         <h3>KPI 1 · Лиды <span>30%</span></h3>
         <div class="crit">
@@ -241,7 +240,6 @@ tbody tr:nth-child(even){background:#f8fafc}
         </div>
       </div>
 
-      <!-- KPI 2 -->
       <div class="calc-block">
         <h3>KPI 2 · Карточка <span>40%</span></h3>
         <div class="crit">
@@ -270,7 +268,6 @@ tbody tr:nth-child(even){background:#f8fafc}
         </div>
       </div>
 
-      <!-- KPI 3 -->
       <div class="calc-block">
         <h3>KPI 3 · Касания <span>30%</span></h3>
         <div class="crit">
@@ -343,7 +340,6 @@ tbody tr:nth-child(even){background:#f8fafc}
 </div>
 
 <script>
-/* ── НАВИГАЦИЯ ─────────────────────────────── */
 let current = 0;
 const slides = document.querySelectorAll('.slide');
 const counter = document.getElementById('counter');
@@ -377,7 +373,6 @@ document.addEventListener('touchend', e => {
   if (Math.abs(dx) > 50) go(dx < 0 ? 1 : -1);
 });
 
-/* ── КАЛЬКУЛЯТОР ───────────────────────────── */
 const fmt = n => Math.round(n).toLocaleString('ru-RU') + ' ₽';
 
 function coefOf(val) {
@@ -397,7 +392,6 @@ function calc() {
   const salary = +document.getElementById('salary').value || 0;
   const bonusBase = +document.getElementById('bonus').value || 0;
 
-  /* KPI 1 — 3 критерия */
   const k1c1 = +document.getElementById('k1c1').value || 0;
   const k1c2 = +document.getElementById('k1c2').value || 0;
   const k1c3 = +document.getElementById('k1c3').value || 0;
@@ -405,7 +399,6 @@ function calc() {
   setCoefUI('k1c1c', c1a); setCoefUI('k1c2c', c1b); setCoefUI('k1c3c', c1c);
   const k1 = (c1a.coef + c1b.coef + c1c.coef) / 3;
 
-  /* KPI 2 — 4 критерия */
   const k2c1 = +document.getElementById('k2c1').value || 0;
   const k2c2 = +document.getElementById('k2c2').value || 0;
   const k2c3 = +document.getElementById('k2c3').value || 0;
@@ -414,21 +407,18 @@ function calc() {
   setCoefUI('k2c1c', c2a); setCoefUI('k2c2c', c2b); setCoefUI('k2c3c', c2c); setCoefUI('k2c4c', c2d);
   const k2 = (c2a.coef + c2b.coef + c2c.coef + c2d.coef) / 4;
 
-  /* KPI 3 — 2 критерия */
   const k3c1 = +document.getElementById('k3c1').value || 0;
   const k3c2 = +document.getElementById('k3c2').value || 0;
   const c3a = coefOf(k3c1), c3b = coefOf(k3c2);
   setCoefUI('k3c1c', c3a); setCoefUI('k3c2c', c3b);
   const k3 = (c3a.coef + c3b.coef) / 2;
 
-  /* Итоговый KPI — веса 30 / 40 / 30 */
   const totalKpi = k1 * 0.3 + k2 * 0.4 + k3 * 0.3;
   document.getElementById('k1res').textContent = k1.toFixed(1).replace('.', ',') + '%';
   document.getElementById('k2res').textContent = k2.toFixed(1).replace('.', ',') + '%';
   document.getElementById('k3res').textContent = k3.toFixed(1).replace('.', ',') + '%';
   document.getElementById('totalKpi').textContent = totalKpi.toFixed(1).replace('.', ',') + '%';
 
-  /* Штраф от оклада: 5% за каждый критерий < 75% — 9 критериев */
   let fineCount = 0;
   [k1c1, k1c2, k1c3, k2c1, k2c2, k2c3, k2c4, k3c1, k3c2].forEach(v => { if (v < 75) fineCount++; });
   const fine = salary * 0.05 * fineCount;
@@ -440,11 +430,20 @@ function calc() {
     fineCard.style.display = 'none';
   }
 
-  /* KPI-бонус */
   const kpiBonus = bonusBase * (totalKpi / 100);
 
-  /* Слайд 4 */
   document.getElementById('s4-oklad').textContent = fmt(salary);
   document.getElementById('s4-fine-calc').textContent = fineCount > 0 ? fineCount + ' × 5% × ' + Math.round(salary) : '—';
   document.getElementById('s4-fine').textContent = fmt(fine);
-  document.getElementById('s4-bonus-calc').textContent = Math.round(bonusBase).toLocaleString('ru-RU') + ' × ' + totalKpi.toFixed(1).replace
+  document.getElementById('s4-bonus-calc').textContent = Math.round(bonusBase).toLocaleString('ru-RU') + ' × ' + totalKpi.toFixed(1).replace('.', ',') + '%';
+  document.getElementById('s4-bonus').textContent = fmt(kpiBonus);
+  document.getElementById('s4-total').textContent = fmt(salary - fine + kpiBonus);
+  document.getElementById('totalBonus').textContent = fmt(kpiBonus);
+}
+
+show(0);
+calc();
+</script>
+
+</body>
+</html>
